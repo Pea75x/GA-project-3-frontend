@@ -1,79 +1,164 @@
-# Big Smoke - GA SEI Project 3
+# GA project 2
 
-## Project Overview
+Our task was to create a full stack app, using a Mongo database in the backend, and React for the frontend.
 
-Big Smoke is a full stack app that uses a Mongo database in the backend, which serves a React frontend. The project was completed within 7 days and group-coded with [Priya Patel](https://github.com/Pea75x) and [Tatiana Guzun](https://github.com/TatianaRG). The app is designed to list places to visit in London and gives the user functionality to register/login and leave reviews and likes on places. The app also includes search functionality and maps.
+## Timeframe
 
-**TECHNOLOGIES USED:** HTML, CSS/Sass, JavaScript, React, Bulma, Axios, Node.js, MongoDB, react-router-dom, react-map-gl, Netlify, Heroku,
+7 days
 
-**LINK:**
+## Technologies Used
 
-# The Brief
+- HTML
+- CSS/Sass
+- JavaScript
+- React
+- Bulma
+- Axios
+- Node.js
+- MongoDB
+- Netlify
+- Heroku
 
-- **Build a full-stack application by making your own backend and your own front-end.**
-- **Use an Express API to serve your data from a Mongo database.**
-- **Consume your API with a separate front-end built with React.**
-- **Be a complete product which most likely means multiple relationships and CRUD functionality for at least a couple of models.**
-- **Implement thoughtful user stories/wireframes that are significant enough to help you know which features are core MVP and which you can cut.**
-- **Be deployed online so it’s publicly accessible.**
+## Our Idea
 
-## Approach
+This project was created with [Edward Foulds](https://github.com/FouldsEJ) and [Tatiana Guzun](https://github.com/TatianaRG).
 
-### **1) Planning**
+We created an app for destinations in London for anyone that wants to find new places to explore. Users can like, rate and comment on places, so you can see what its like before you go.
 
-As a group we started by deciding what our web application wanted to be about. We brainstormed a few different ideas, but settled with a site providing a list of London places which users could interact with by liking and reviewing. From here, our next step was to create a simple wireframe of what we wanted our final end product to look like - this ensured we were all aligned and clearly understood the end product. In addition, we mapped out each of our planned backend models and the data that would be stored in each.
+## Planning
 
-![Frontend planning](client/src/images/readme-images/frontend-planning.png)
-![Backend planning](client/src/images/readme-images/frontend-planning.png)
+To keep on top of the work as a group we used Trello. We colour coded our tasks to show who was implementing each task. We first completed all the tasks in the back end and moved onto the front end as a team. We used Edwards Github to store the project and at the end of the day we would merge conflicts together to make sure there were no issues.
 
-As a group we used Trello to organise the tasks and color coded the tasks to identify the action owner. Each member of the group worked full stack. We developed the backend first, before focussing our attention on the frontend. We would come together to merge conflicts and review each other's code in a daily stand-up each morning and would also collaborate on an adhoc basis if anyone was having difficulties. My primary focus on the backend included seeding the data, creating the review controller and putting together the secure route - on the frontend, it included the PlaceShow.js component and the MapSearch.js.
+![trello](./readme/trello-board.png)
 
-![Trello board](client/src/images/readme-images/trello-board.png)
+Our plan for the back end API was a place and user model. We then added the stations model later on in our planning.
 
-### **2) Functionality**
+![Backend-planning](./readme/backend-planning.png)
 
-#### Backend
+For the front end, we wanted a home page that included our top rated places to visit, and then a search page, individual place page and a map page. We later added the map to the search page.
 
-As a group, we developed a backend using MongoDB as the database and used Mongoose to interact with the database. We used Mongoose to create models which performed CRUD actions on the relevant collection in the database and also used it to validate the data. The models were constructed using Schema. We put together 3 models; places, stations and users, each of which had data validation included e.g. 'type: String, required: true, maxlength: 300'. Within the models, we used both embedded data and referenced data.The places model is a good example of both of these. It contains reviews (an embedded schema) and it uses a number of referenced data e.g. stationID and itinerary, which take their data from different models, the stationID taking its id from the station model and the itinerary taking the id of a user.
+![frontend-planning](./readme/frontend-planning.png)
 
-![Places model](client/src/images/readme-images/places-model.png)
+The main tasks I was responsible for were the search page, adding and removing user likes and itinerary, the itinerary page, the place cards, and making sure certain parts of the page were only visible to those logged in/admin.
 
-For each of our models we created a controller, which contained a set of functions to handle each separate route. For example, the reviews controller has an update, create and delete function. The router.js file then directs each route to the correct function.
+## Itinerary
 
-The seeding of the data was done manually, with the exception of the stations data, which I enjoyed seeding using the google spreadsheets API. This saved us the time of inputting each individual London Tube station manually.
+### Back end
 
-#### Frontend
+The itinerary feature is on every place page. Each user can add or remove a place from their itinerary. Once added, it will show up on your profile page under a list of places you wish to go.
 
-Although we worked across all components together, we did initially divide the components between each other. I spent the majority of my time working on the PlaceShow.js component and the MapSearch.js component.
+The itinerary is located in the **places model** in the back end -
 
-The MapSearch.js component was enjoyable to create. Using react-map-gl, I was able to integrate the Map as a controllable component into the search page and use the data passed in by props to show only the pins for the places that the user was searching for. This integrated nicely with the SearchPage.js component, which using a piece of state called ‘searchCriteria’ that was updated on any change to the search form, re-fetched the place data and hence the filtered list of places and in turn the pins showing on the map.
+```javascript
+itinerary: [{ type: mongoose.Schema.ObjectId, ref: 'User' }];
+```
 
-## Wins & Blockers
+When you add a place to your itinerary you are actually adding your user ID to the itinerary array in the place model.
 
-### **Wins:**
+Then to view all of the places on your profile page you find the places that include the userID in their itinerary -
 
-- A successfully functioning and extensive app, with a large amount of functionality, a clean user experience and created within 7 days was a great achievement.
-- A very slick and succinct discover page, which made use of query params in both the front and back end to update the users search instantaneously.
-- Implementing reat-map-gl into the project (with some extra functionality then my previous projects) including multiple clickable pins was challenging, but overall successful. It really adds to the functionality of the discover page.
+```javascript
+const places = await Place.find({ itenerary: userId });
+```
 
-### **Blockers:**
+### Front end
 
-- Initially working with Git and using feature branches as a team of 3 took some getting used to, but by the end of the project we all felt proficient using it. Good communication was crucial to ensure we avoided any challenging merge conflicts.
+To make the button change from "Add to Itinerary" to "Remove from Itinerary" We started with setting a state for the itinerary with it starting as True.
 
-## Bugs
+```javascript
+const [itineraryBut, setItineraryBut] = React.useState(true);
+```
 
-- No identified bugs
+When we get to our add or remove function, we set the state to **!itineraryBut**
 
-## Future Improvements
+```javascript
+async function handleAddOrRemoveItinerary() {
+  setItineraryBut(!itineraryBut);
+  if (singlePlace.itenerary.includes(getLoggedInUserId())) {
+    const data = await removeFromItenerary(id);
+    setSinglePlace(data);
+  } else {
+    const data = await addToItenerary(id);
+    setSinglePlace(data);
+  }
+}
+```
 
-- I would like to improve the functionality of the map search, which would show you the details of the place onHover of the map pin.
+If the user ID is included in the place itinerary, we will remove it. If it is not, we add it to itinerary.
 
-## Key Takeaways
+Then on the button in the return, we add a ternary statement.
 
-This was my first group-programming project and my first full stack application and I really enjoyed it. Working alongside two other people provided a great opportunity to learn from them, overcome hurdles and fix bugs together. Likewise, it also gave me a confidence boost teaching them new skills and explaining my code to them or helping to fix their coding issues. During the project, I became more proficient with git and github and built upon existing communication and leadership skills when helping to guide the team through challenges. Overall, I am very satisfied with the end product and the extensive amount of work and functionality we achieved in the 7 days we were given.
+```javascript
+{
+  itineraryBut ? 'Remove from Itinerary' : 'Add to Itinerary';
+}
+```
 
-## Contact:
+## Reviews
 
-- Github: github.com/FouldsEJ
-- Linkedin: linkedin.com/in/edwardfoulds
-- Portfolio: edwardfoulds.co.uk
+### Back end
+
+For the reviews, we started with the review schema which included a comment, rating, and created by, so we can later gather the users username and image to display in the comments section.
+
+```javascript
+const reviewSchema = new mongoose.Schema(
+  {
+    comment: { type: String, required: true, maxlength: 300 },
+    rating: { type: Number, required: true, min: 1, max: 5 },
+    createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  },
+  { timestamps: true }
+);
+```
+
+We then added this schema into the places model -
+
+```javascript
+reviews: [reviewSchema];
+```
+
+Then we added a create, delete and update function to our controllers. Take the delete controller for example.
+
+We are expecting a place ID and a review ID in the params.
+
+```javascript
+const { id, reviewId } = req.params;
+const place = await Place.findById(id);
+const review = place.reviews.id(reviewId);
+```
+
+We then create 404 messages if there is no review or no place
+
+```javascript
+if (!review) {
+  return res.status(404).send({ message: 'Review not found' });
+}
+```
+
+If we do have both of these things we remove the review and save the place.
+
+### Front end
+
+You can then see how the place and review ID are added to the params in the front end function.
+
+```javascript
+const options = {
+  method: 'DELETE',
+  url: `/api/places/${placeId}/reviews/${reviewId}`,
+  headers: {
+    authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+  }
+};
+```
+
+We wanted the delete button to only show for reviews that the user has created. We did this by checking if the userID is the same as the createdby ID in the review. (Admin can also delete any comments)
+
+```javascript
+{
+  (getLoggedInUserId() === review.createdBy || isAdmin()) && (
+    <button onClick={() => handleDeleteReview(review._id)}>
+      Delete Review
+    </button>
+  );
+}
+```

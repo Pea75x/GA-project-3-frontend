@@ -1,0 +1,326 @@
+@import '~bulma/bulma.sass';
+body {
+  font-family: 'Comfortaa', cursive;
+}
+img {
+  border-radius: 10px;
+}
+.coordinates-box,
+.category,
+.profile-text {
+  justify-content: space-around;
+}
+.categoryboxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hero-image {
+  background-image: url('https://wallpaperaccess.com/full/204300.jpg');
+  height: 60vh;
+}
+.navbar {
+  background-color: #9fd3c7;
+}
+
+.block {
+  font-size: 25px;
+}
+
+//Popup Window
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+.popup-inner {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 640px;
+  background-color: white;
+}
+
+.popup-inner .popup-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.popup-btn {
+  background-color: #1e293b;
+  color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+.hero-container {
+  position: relative;
+  padding: 32px;
+}
+
+.hero-title {
+  font-size: 50px;
+  color: #9fd3c7;
+}
+
+/* Home page button */
+.btn {
+  background-color: #1e293b;
+  color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  font-weight: 500;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+#hero-text {
+  padding: 30px;
+}
+
+// profile page
+.profile-page {
+  background-image: url('https://wallpaperaccess.com/full/204300.jpg');
+  background-position: top;
+  background-size: cover;
+  height: 40vh;
+}
+
+.image-container-profile {
+  margin: 0 auto;
+}
+
+.profile-text {
+  font-size: 50px;
+  min-height: 100% !important;
+}
+.profilePicture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.reviewPicture {
+  border-radius: 50%;
+}
+.itinerary-box {
+  min-height: 200px;
+  margin: auto !important;
+  width: 90% !important;
+  padding-bottom: 50px;
+}
+
+// Place Show Page
+
+.about-section {
+  padding-bottom: 0;
+}
+
+.about-details {
+  background-color: #ececec;
+  border-radius: 20px;
+}
+
+.review-section {
+  padding-top: 20px;
+}
+
+.review-container {
+  padding: 20px;
+  background-color: #ececec;
+  border-radius: 20px;
+}
+
+.image-and-map-column {
+  height: 70vh;
+  box-sizing: border-box;
+
+  #image-view {
+    position: relative;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+
+    figure img {
+      border-radius: 20px;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  #map-view {
+    width: 100%;
+    height: 80%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+.about-hr {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.review-hr {
+  margin-top: 0;
+}
+
+.heart {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+
+  #like-count {
+    background: rgba(255, 255, 255, 0);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+  }
+}
+
+// Explore Page
+
+.search-section {
+  margin: 10px 0;
+}
+
+.map-search {
+  width: 100%;
+  height: 550px;
+  position: relative;
+}
+
+.placecard {
+  margin-top: 0 !important;
+}
+
+#search-page-line {
+  margin: 0;
+}
+
+.search-display-wrapper {
+  padding: 0 0 0 20px;
+}
+
+.scroll {
+  overflow-y: auto;
+  max-height: 550px;
+  margin-top: 0px;
+}
+
+// Place Cards
+
+.card {
+  position: relative;
+}
+.image-card-overlay {
+  font-family: 'Comfortaa', cursive;
+}
+
+.image-card-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  float: left;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  background-color: #9fd3c7;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  opacity: 0;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.image-card-overlay:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+//Footer
+.login-section {
+  min-height: calc(100vh - 196px);
+}
+
+.register-section {
+  min-height: calc(100vh - 196px);
+}
+.search-section {
+  min-height: calc(100vh - 196px);
+}
+.profile-section {
+  min-height: calc(100vh - 196px);
+}
+
+.footer {
+  height: 80px;
+  background-color: #142d4c;
+  padding-top: 10px;
+}
+
+.footer .content {
+  color: white;
+}
+//Map Search
+.mapboxgl-popup-content {
+  text-align: center;
+  background-color: #6795c1;
+  max-width: 150px;
+  max-height: 200px;
+  border-radius: 10px;
+
+  h2 {
+    font-weight: bold;
+    color: white;
+  }
+
+  img {
+    min-width: 100%;
+  }
+}
+//add place page
+.addplacebox {
+  background-color: #1e293b;
+  color: white;
+}
+.addPlacelabel {
+  color: white;
+}
+.place-box,
+.place-submit {
+  padding-top: 30px !important;
+}

@@ -1,4 +1,4 @@
-# GA project 2
+# GA project 3
 
 Our task was to create a full stack app, using a Mongo database in the backend, and React for the frontend.
 

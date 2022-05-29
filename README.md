@@ -58,7 +58,7 @@ When you add a place to your itinerary you are actually adding your user ID to t
 Then to view all of the places on your profile page you find the places that include the userID in their itinerary -
 
 ```javascript
-const places = await Place.find({ itenerary: userId });
+const places = await Place.find({ itinerary: userId });
 ```
 
 ### Front end
@@ -75,16 +75,16 @@ When we get to our add or remove function, we set the state to **!itineraryBut**
 async function handleAddOrRemoveItinerary() {
   setItineraryBut(!itineraryBut);
   if (singlePlace.itenerary.includes(getLoggedInUserId())) {
-    const data = await removeFromItenerary(id);
+    const data = await removeFromItinerary(id);
     setSinglePlace(data);
   } else {
-    const data = await addToItenerary(id);
+    const data = await addToItinerary(id);
     setSinglePlace(data);
   }
 }
 ```
 
-If the user ID is included in the place itinerary, we will remove it. If it is not, we add it to itinerary.
+If the user ID is included in the place itinerary, we will remove it. If it is not, we add it to the itinerary.
 
 Then on the button in the return, we add a ternary statement.
 
@@ -98,7 +98,7 @@ Then on the button in the return, we add a ternary statement.
 
 ### Back end
 
-For the reviews, we started with the review schema which included a comment, rating, and created by, so we can later gather the users username and image to display in the comments section.
+For the reviews, we started with the review schema which included a comment, rating, and created by, so we can later gather the user's username and image to display in the comments section.
 
 ```javascript
 const reviewSchema = new mongoose.Schema(
@@ -162,3 +162,23 @@ We wanted the delete button to only show for reviews that the user has created. 
   );
 }
 ```
+
+## Wins
+
+I think the search bar on the explore page was done really well. It is case insensitive and works with the category searches too.
+
+This was all done in the back end by creating a request that takes the search text, category and station.
+
+```javascript
+const places = await Place.find({
+  name: new RegExp(textSearch, 'i'),
+  category: { $regex: categorySearch },
+  stationName: { $regex: stationSearch }
+});
+```
+
+I also think we did well making features like the logout button and post a review section only visible to those logged in.
+
+## Bugs
+
+No known bugs.

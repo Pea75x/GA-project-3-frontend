@@ -23,7 +23,7 @@ Our task was to create a full stack app, using a Mongo database in the backend, 
 
 This project was created with [Edward Foulds](https://github.com/FouldsEJ) and [Tatiana Guzun](https://github.com/TatianaRG).
 
-We created an app for destinations in London for anyone that wants to find new places to explore. Users can like, rate and comment on places, so you can see what its like before you go.
+We created an app for destinations in London for anyone that wants to find new places to explore. Users can like, rate and comment on places, so you can see what it's like before you go.
 
 ## Planning
 
@@ -165,7 +165,7 @@ We wanted the delete button to only show for reviews that the user has created. 
 
 ## Wins
 
-I think the search bar on the explore page was done really well. It is case insensitive and works with the category searches too.
+1.  I think the search bar on the explore page was done really well. It is case insensitive and works with the category searches too. I think it makes the search bar slick and easy to use.
 
 This was all done in the back end by creating a request that takes the search text, category and station.
 
@@ -177,8 +177,14 @@ const places = await Place.find({
 });
 ```
 
-I also think we did well making features like the logout button and post a review section only visible to those logged in.
+2.  We did well making features like the logout button and post a review section only visible to those logged in.
+
+3.  We worked well as a team and kept in constant communication using trello and skype, which made working on this project run smoothly.
 
 ## Bugs
 
 No known bugs.
+
+## Future Features
+
+I think we could have done more with the profile page and itinerary. If we had more time we could add the map to the profile page which included all of the places in your itinerary. We could have also added the places to a timeline so the user can plan out their day.

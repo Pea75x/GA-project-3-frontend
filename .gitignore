@@ -5,3 +5,5 @@ node_modules
 .env
 .sass-cache
 credentials.json
+# Local Netlify folder
+.netlify

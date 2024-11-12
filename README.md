@@ -17,6 +17,7 @@ Our task was to create a full stack app, using a Mongo database in the backend, 
 - Netlify
 - Heroku
 - Webpack
+- SCSS
 
 ## Our Idea
 

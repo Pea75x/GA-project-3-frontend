@@ -8,8 +8,6 @@ Our task was to create a full stack app, using a Mongo database in the backend, 
 
 ## Technologies Used
 
-- HTML
-- CSS/Sass
 - JavaScript
 - React
 - Bulma
@@ -18,6 +16,7 @@ Our task was to create a full stack app, using a Mongo database in the backend, 
 - MongoDB
 - Netlify
 - Heroku
+- Webpack
 
 ## Our Idea
 
